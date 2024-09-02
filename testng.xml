@@ -1,9 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="5" name="Test">
+<suite name="Suite" parallel="tests" thread-count="2">
+	<listeners>
+		<listener class-name="test.ListenerExample"></listener>
+	</listeners>
+
+<!-- 
+	  <test name="Test Group 1 - Run All Test Case">
     <classes>
       <class name="test.Intro"/>
+      <class name="test.PriorityTestExample"></class>
     </classes>
-  </test> <!-- Test -->
+  </test> 
+  
+  <test name="Test Group 2 - Run Test Case Except This 1 Scenario">
+  	<classes>
+  		<class name="test.PriorityTestExample">
+  			<methods>
+  				<exclude name="mobileLogin"></exclude>
+  			</methods>
+  		</class>
+  	</classes>
+  </test>
+  
+   <test name="Test Group 3 - Run Specific Scenario">
+  	<classes>
+  		<class name="test.Intro">
+  			<methods>
+  				<include name="second"></include>
+  			</methods>
+  		</class>
+  	</classes>
+  </test>
+	
+-->
+  
+  <test name="Test Group 4 - Run Groups Only">
+  	<groups>
+  		<run>
+  			<include name="Smoke"></include>
+  		</run>
+  	</groups>
+  	<classes>
+  		<class name="test.Intro"></class>
+  		<class name="test.PriorityTestExample"></class>
+  	</classes>
+  </test>
+  
+  <test name="Test Group 5 - Run All Except Groups">
+  	<groups>
+  		<run>
+  			<exclude name="Smoke"></exclude>
+  		</run>
+  	</groups>
+  	<classes>
+  		<class name="test.Intro"></class>
+  		<class name="test.PriorityTestExample"></class>
+  	</classes>
+  </test>
 </suite> <!-- Suite -->
